@@ -1,0 +1,875 @@
+/* File: styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/*------------------------------------
+1. Variables
+------------------------------------*/
+:root {
+
+    /* === PROMOCION === */
+  --promocion-font-size:     1.3rem;
+  --promocion-font-weight:   600;
+  --promocion-color:         #87CEEB;    /* <- aquí pones tu color personalizado */
+  --promocion-margin-bottom: 0.5rem;
+  --promocion-shadow-mid:    #34085c;
+  --promocion-text-shadow: 
+    0 0 4px var(--promocion-color),
+    0 0 8px var(--promocion-color),
+    0 0 12px var(--promocion-shadow-mid);
+
+
+
+  /*CARD COLORS*/
+--color-escribitunombre: rgba(107, 181, 171, 0.389);
+
+   --gradient-start: rgba(0, 0, 0, 0.997);   /* verde bosque muy oscuro */
+  --gradient-end:   rgba(7, 99, 165, 0.8) ;  /* verde profundo ligeramente más claro */
+
+
+  /* Fondo casi negro con matiz verde */
+  --bg-base:      #0a1008;              /* muy oscuro, casi negro-verde absoluto */
+
+  /* Degradé interno de más oscuro a menos oscuro */
+  --bg-dark:      #0A3B55; /* azul muy oscuro para fondo */
+  --bg-light:     #1E5F88; /* azul medio-oscuro para fondos secundarios */
+  --accent-mid:   #4ed0ff; /* el color “WB” original */
+  --accent-light: #5dc3df; /* versión más clara para resaltar */
+  /* Textos blancos suaves */
+  --white:        #f0faf5;              /* blanco con un leve matiz verde claro */
+
+  /* Fondo para inputs */
+  --input-bg:     rgba(0, 200, 255, 0.2); /* verde claro al 20% de opacidad */
+
+  --gutter: 1rem;
+  --radius: 1rem;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --fast: 0.2s;
+  --medium: 0.5s;
+
+  --screen-aspect: 360/780;
+  
+  /*lo nuevo de escribi tu nombre*/
+    --gutter: 1rem;
+  --primary-color: #4f46e5;
+  --accent-color: #facc15;
+  --glow-color: rgba(21, 158, 250, 0.75);
+
+  }
+
+/*------------------------------------
+2. Impedir scroll de la página
+------------------------------------*/
+html, body {
+  height: 100%;
+  margin: 0;
+   /* quita scroll */
+}
+
+
+/*------------------------------------
+3. Base & Reset
+------------------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg-base) center/cover no-repeat;
+  color: var(--white);
+  /* para centrar la pantalla fija */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ocultar contenido fallback */
+.content {
+  display: none !important;
+}
+
+/*------------------------------------
+4. Pantalla fija full-viewport
+------------------------------------*/
+.screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  /* degradé que parte de --bg-dark y va a --bg-light */
+background: linear-gradient(360deg,
+ var(--gradient-end),
+  #000000);
+
+
+  padding: var(--gutter);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/*------------------------------------
+5. Card & Textos
+------------------------------------*/
+.card {
+  width: 100%;
+background: linear-gradient(
+    180deg,
+    var(--gradient-start),
+    var(--gradient-end));
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  animation: bounce 2.5s infinite var(--ease);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+
+.title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #09a5ff;
+  text-shadow:
+    2px 2px 4px rgb(0, 0, 0),
+    0    0    5px var(--accent-mid);
+  text-align: center;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFFFFF;                  /* ahora blanco puro */
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.892);
+  line-height: 1.3;                /* mejor centrado vertical */
+  text-align: center;              /* centrado de varias líneas */
+}
+
+.subtitle .fire {
+  animation: flicker 1.8s infinite var(--ease);
+  display: inline-block;
+  transform-origin: center bottom;
+    width: px;                         /* ancho en px */
+  height: 22px;                        /* alto en px */
+}
+
+@keyframes flicker {
+  0%, 18%, 20%, 60%, 62%, 100% { opacity: 1; transform: scale(1); }
+  19%, 61%                     { opacity: 0.4; transform: scale(0.9); }
+}
+
+.highlight {
+  /* 1. Tipografía con cuerpo y espaciado cuidado */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.55rem;           /* adaptable según tu --promocion-font-size */
+  font-weight: 900;             /* cuerpo medio */
+  line-height: 1.4;
+  margin-bottom: var(--promocion-margin-bottom);
+  display: inline-block;
+  position: relative;
+  padding: 0 0.2em;
+
+  /* 2. Degradado animado de fondo */
+  
+  background: #48ff00   
+  ;
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 5s ease infinite;
+
+  /* 3. Sombra de texto para profundidad */
+
+  /* 4. Bounce suave al cargar */
+  animation: gradient-move 5s ease infinite, highlight-bounce 0.6s ease-out;
+}
+
+/* Animación del degradado */
+@keyframes gradient-move {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* Pequeño “bounce” inicial */
+@keyframes highlight-bounce {
+  0%   { transform: scale(0.95); opacity: 0; }
+  60%  { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* 5. Subrayado animado */
+.highlight::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;           /* justo debajo de la línea base */
+  width: 100%; height: 3px;        /* grosor del subrayado */
+  background: rgba(255, 255, 255, 0.6);
+  transform-origin: left center;
+
+
+}
+
+/* Al pasar el ratón, el subrayado barre completo */
+.highlight:hover::after {
+  transform: scaleX(1);
+}
+
+
+
+@keyframes twinkle {
+  0%, 100%   { opacity: 1; }
+  50%        { opacity: 0.5; }
+}
+.subtitle .fire {
+  animation: twinkle 1.2s steps(2, start) infinite;
+}
+
+/* — Tu diamante (.fire) — */
+.subtitle .fire {
+  width: 22px;              /* ajusta al tamaño que prefieras */
+  height: auto;
+  display: inline-block;
+  position: relative;
+  transform-origin: center center;
+
+  /* 1) spin Z, 2) float, 3) flicker opacidad */
+  animation:
+    spin       8s linear infinite,
+    float      4s ease-in-out infinite,
+    fire-flicker 1.8s steps(2) infinite;
+  overflow: visible;
+}
+
+/* — Giro continuo sobre el eje Z — */
+@keyframes spin {
+  to { transform: rotateZ(360deg); }
+}
+
+/* — Suave movimiento “flotando” arriba/abajo — */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* — Parpadeo de opacidad profesional — */
+@keyframes fire-flicker {
+  0%, 18%, 20%, 60%, 62%, 100% { opacity: 1; }
+  19%, 61%                     { opacity: 0.4; }
+}
+
+/* — Barrido de brillo sobre el diamante — */
+.subtitle .fire::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0)    0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0)    100%
+  );
+  transform: skewX(-30deg);
+  animation: shine 2.5s ease-in-out infinite;
+}
+@keyframes shine {
+  from { left: -100%; }
+  to   { left: 200%; }
+}
+
+.subtitle .fire {
+  /* ...tus animaciones existentes aquí... */
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.5));
+}
+/*------------------------------------
+6. Input & Button
+-------------ACA VA INPUT-GROUP---------------------*/
+/* Versión final con transparencia reducida en el input y efecto “shine” en el placeholder */
+
+.input-group {
+  width: 100%;
+  margin-bottom: var(--gutter);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: calc(var(--radius) / 2);
+  /* Fondo con menos transparencia (antes era var(--input-bg), ahora rgba más opaco) */
+  background: var(--color-escribitunombre);
+  color: var(--white);
+  font-size: 1rem;
+  transition:
+    box-shadow var(--medium) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--accent-mid);
+  transform: translateY(-2px);
+}
+
+/* =======================================================
+   Keyframes “shine” (tomados de Uiverse.io por neerajbaniwal)
+   ======================================================= */
+@-moz-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-webkit-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-o-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+
+/* ==================================================
+   Efecto “shine” en el placeholder con background-size
+   ================================================== */
+input[type="text"]::placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+input[type="text"]::-moz-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+input[type="text"]:-ms-input-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  color: transparent; /* IE10+ no soporta clip-text en placeholder */
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+.shake {
+  animation: shake 0.5s var(--ease);
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-6px); }
+  40%,80% { transform: translateX(6px); }
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--white);
+  border: none;
+  border-radius: calc(var(--radius)/2);
+  background: linear-gradient(90deg, var(--accent-mid), var(--accent-light));
+  background-size: 200% 200%;
+  animation: gradient 4s var(--ease) infinite;
+  transition: transform var(--fast) var(--ease);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    /* NUEVO: sombra en el texto */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.btn:hover {
+  transform: scale(1.03) translateY(-1px);
+}
+.btn .icon {
+  margin-left: 0.5rem;
+  width: 1.25em;
+  height: 1.25em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/*------------------------------------
+7. Carousel: grab, pausa & auto-scroll
+------------------------------------*/
+.carousel-section {
+  width: 100%;
+  margin-top: var(--gutter);
+}
+.carousel-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--#accent-light);
+  margin-bottom: 0.5rem;
+
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 0.5rem;
+  transition: transform var(--fast) var(--ease);
+  cursor: grab;
+  touch-action: pan-x;
+  user-select: none;
+  animation: scrollCarousel 20s linear infinite;
+}
+.carousel-track:active {
+  cursor: grabbing;
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.carousel-item {
+  /* ⚠️ Fija cada slide al 20% (5 ítems por fila) restando los gaps */
+  flex: 0 0 calc((100% - (4 * 0.5rem)) / 5);
+  position: relative;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: rgba(224,247,255,0.1);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: calc(var(--radius)/1.3);
+  object-fit: cover;
+
+}
+
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: rgba(224,247,255,0.5);
+  border: none;
+  border-radius: 50%;
+  transition: background var(--fast) var(--ease);
+}
+.dot.active {
+  background: var(--accent-light);
+}
+
+
+/*------------------------------------
+8. Testimonials header
+------------------------------------*/
+/* ------------------------------------
+   8. Testimonials header (reemplazado)
+------------------------------------*/
+.testimonials-section {
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--gradient-start),   /* violeta muy cercano al negro */
+    rgba(7, 99, 165, 0.8)   /* violeta oscuro pero ligeramente más claro */
+  );
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: var(--gutter);
+}
+
+.testimonials-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accents-light);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Carrusel vertical de testimonios */
+.testimonials-carousel {
+  position: relative;
+  height: 4.5rem; /* altura fija para una línea de texto */
+}
+
+.testimonial-item {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  background: rgba(222, 131, 12, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: calc(var(--radius)/2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition:
+    top var(--fast) var(--ease),
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+/* Dar color blanco a todos los <p> hijos */
+.testimonial-item p {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ESTILOS PARA EL NUEVO LAYOUT */
+.testimonial-item .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+
+  /* Baja la opacidad de todo el elemento */
+  opacity: 0.7;    /* 0 = invisible, 1 = totalmente opaco */
+}
+
+.testimonial-item .header .time {
+  font-size: 0.9rem;
+  color: var(--accents-light);
+}
+
+.testimonial-item .message {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-item .meta {
+  color: #ffffff;
+  opacity: 0.7; 
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.testimonial-item.active {
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*------------------------------------
+9. Reduced motion
+------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/*logo*/
+.logo {
+  /* Tamaño fijo para reservar el espacio */
+  width: 160px;
+  height: 160px;
+
+  /* Bordes redondeados y recorte de la imagen interna */
+  border-radius: 50%;
+  overflow: hidden;
+
+  /* Centrado del <img> */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Contorno blanco sin clipping */
+  box-shadow: 0 0 0 3px white;
+}
+
+.logo .icon {
+  /* Ajuste al 100% del contenedor */
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* Garantizar que la imagen siga circular */
+  border-radius: 50%;
+}
+
+
+/* Tu overlay, sin cambios estructurales */
+#overlayImage {
+  position: fixed;
+  top: 95%;                /* Ajusta la posición vertical (Y) */
+  left: 50%;               /* Ajusta la posición horizontal (X) */
+  transform: translate(-50%, -50%); /* Centra el eje del ancho y alto */
+  width: 250px;            /* Tamaño en píxeles */
+  height: auto;            /* Mantiene la proporción original */
+  opacity: 0.3;            /* Transparencia: 0 = invisible, 1 = totalmente opaco */
+  z-index: 9999;           /* Siempre por encima de todas las capas */
+  filter: grayscale(30%);  /* Escala de grises */
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Shine effect (copiado de Uiverse) --- */
+.btn-shine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+
+@-moz-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-webkit-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-o-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+
+/* --- Ejemplo de estilos para tema claro/oscuro --- */
+:root {
+  --bg-dark: #000814;
+  --bg-light: #e6f3ff;
+  --text-dark: #e6f3ff;
+  --text-light: #000814;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html.light body {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+
+.screen::after{content:"© 2025 ArgyStudios. Todos los derechos reservados.";display:block;width:100%;text-align:center;opacity:0.5;margin-top:2rem;font-size:0.5em;}
+
+
+
+
+
+
+
+
+.carousel-item {
+  flex: 0 0 calc((100% - (4 * 0.5rem)) / 5);
+  aspect-ratio: 1 / 1;     /* cajas cuadradas */
+  overflow: hidden;        /* recorta lo que sobre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+/* iconos inline con tamaño de emoji */
+.icon {
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: text-bottom; /* alinea con la base del texto como un emoji */
+  margin-right: 0.25em;         /* separa un poco del texto */
+  object-fit: contain;          /* mantiene proporción */
+  display: inline-block;        /* para que respete width/height */
+}
+
+/* si querés variar márgenes o color sólo para uno: */
+.icon-user { /* ej. margen extra a la derecha */ }
+.icon-pin  { /* ej. margen extra a la derecha */ }
+
+
+
+
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* antes: space-between */
+  gap: 0.25em;                  /* separa icono y nombre */
+}
+
+.header .time {
+  margin-left: auto;           /* empuja sólo el tiempo al extremo derecho */
+}
+/* 🔥 Elimina cualquier sombra o filtro de las imágenes del carrusel 🔥 */
+
+.carousel {
+  padding: 0.3rem;   /* espacio para que la sombra respire */
+  background: #000000;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(4, 184, 255, 0.303);
+}
+
+.carousel-item img {
+  position: relative;
+  z-index: 1;
+}
+.skeleton {
+  z-index: 0;
+}
+
+
+
+
+
+
+
+
+/* EJEMPLO */
+/* 1) Reset básico de márgenes en párrafos dentro del contenedor */
+.examples-container,
+.examples-container p,
+.examples-container span {
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Contenedor en columna, sin espacio extra */
+.examples-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;           /* controla la separación entre label y texto */
+  margin-top: 0.5rem; 
+  opacity: 0.6;      /* si quieres aún menos, pon 0.25rem o 0 */
+  font-size: 0.8rem;
+}
+
